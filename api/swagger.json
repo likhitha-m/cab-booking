@@ -1,0 +1,425 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Cab booking system api documentation",
+        "version": "1.0.0",
+        "title": "Cab booking API",
+        "contact": {
+            "email": "likhitham2012@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "schemes": ["http"],
+    "host": "localhost:4000",
+    "basePath": "/api/v1",
+    "paths" : {
+        "/cabs?lat=74.92202&long=23.3434" : {
+            "get" : {
+                "summary" : "Get nearest cabs lists",
+                "description": "Get nearest cabs lists",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/cabsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/cab" : {
+            "post" : {
+                "summary" : "Add cab details",
+                "description": "Add cab",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "cab object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                               
+                                    "type": "object",
+                                    "$ref": "#/definitions/CabObject"
+                                
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/CabObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/cabs/{id}" : {
+            "put" : {
+                "summary" : "Update cab details",
+                "description": "Update cab details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "cab id that needs to be updated",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "cab object",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                              
+                                    "type": "object",
+                                    "$ref": "#/definitions/CabObject"
+                             
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/CabObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/googleLogin" : {
+            "post" : {
+                "summary" : "Google login",
+                "description": "Login through google ",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+               
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "authorization token from google",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/userObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/addPhone" : {
+            "post" : {
+                "summary" : "Add phone number",
+                "description": "Add phone number",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+               
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "description": "access token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/userObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/verifyOtp" : {
+            "post" : {
+                "summary" : "Add phone number",
+                "description": "Add phone number",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+               
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "user object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+
+                               
+                                    "type": "object",
+                                    "phone":{
+                                        "type":"string"
+                                    },
+                                    "otp":{
+                                        "type":"string"
+                                    }
+                                 
+                                
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/userObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/bookings" : {
+            "post" : {
+                "summary" : "Add booking",
+                "description": "Add booking",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+               
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "booking object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+
+                                "$ref": "#/definitions/bookingObject"
+                                 
+                                
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/userObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/bookings?status=" : {
+            "post" : {
+                "summary" : "List booking",
+                "description": "List booking",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+               
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "booking list",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "properties": {
+
+                                "$ref": "#/definitions/bookingObject"
+                                 
+                                
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/userObject"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "cabsResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "location":{"type":"array"},
+               "vehicleType":{"type":"string"},
+               "vehicleNo":{"type":"string"},
+                "driver": {
+                    "type": "string"
+                }
+            }
+        },
+        "CabObject": {
+            "type": "object",
+            "properties": {
+                "driver": {
+                    "type": "string"
+                },
+                "vehicleType": {
+                    "type": "string"
+                },
+                "vehicleNo": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "array"
+                }
+            }
+        },
+        "userObject": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "googleId": {
+                    "type": "array"
+                },
+                "token": {
+                    "type": "array"
+                }
+            }
+        },
+        "bookingObject": {
+            "type": "object",
+            "properties": {
+                "cab": {
+                    "type": "string"
+                },
+                "pickUpLocation": {
+                    "type": "array"
+                },
+                "dropLocation": {
+                    "type": "string"
+                },
+                "rideTime": {
+                    "type": "array"
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                
+                    "code": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+               
+               
+            }
+
+        }
+    }
+}

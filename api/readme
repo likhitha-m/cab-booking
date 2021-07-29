@@ -1,0 +1,11 @@
+1. Postman collection link : https://www.getpostman.com/collections/cbb0b7455510ccdb6303
+2. Swagger link : localhost:4000/api-docs
+3. Base URL of the app : localhost:4000/api/v1
+4. Steps :
+  1. user will login to the app using google login , facebook login or phone number
+  2. if the user login through google or facebook, he needs to update his phone number and then otp will be sent to the user, user then needs to verify the otp.
+  3. Users current location will be updated using update user api.
+  4. Cabs nearest his location will be listed
+  5. user then book the cab based on pick up location and drop location along with ride time
+  6. user can also view the past bookings 
+  7. User have the option to update the booking.
